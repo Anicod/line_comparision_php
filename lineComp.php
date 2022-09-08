@@ -11,7 +11,7 @@
     <?php
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
-$xA = $xB = $yA = $yB  = "";
+$xA = $xB = $yA = $yB  = $xC = $xD = $yC = $yD = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["xA"])) {
@@ -54,6 +54,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $nameErr = "Only letters and white space allowed";
     }
   }
+
+
+  if (empty($_POST["xC"])) {
+    $nameErr = "coordinate is required";
+    echo $nameErr;
+  } else {
+    $xC = test_input($_POST["xC"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$xC)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
+  if (empty($_POST["xD"])) {
+    $nameErr = "coordinate is required";
+    echo $nameErr;
+  } else {
+    $xD = test_input($_POST["xD"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$xD)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
+  if (empty($_POST["yC"])) {
+    $nameErr = "coordinate is required";
+    echo $nameErr;
+  } else {
+    $yC = test_input($_POST["yC"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$yC)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
+  if (empty($_POST["yD"])) {
+    $nameErr = "coordinate is required";
+    echo $nameErr;
+  } else {
+    $yD = test_input($_POST["yD"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$yD)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
 }
 function test_input($data) {
     $data = trim($data);
@@ -68,6 +110,11 @@ function test_input($data) {
     <p>xB coordinate: <input type="text" name="xB" value="<?php echo $xB;?>"></p>
     <p>yA coordinate: <input type="text" name="yA" value="<?php echo $yA;?>"></p>
     <p>yB coordinate: <input type="text" name="yB" value="<?php echo $yB;?>"></p>
+    <h3>enter the coordinate second line</h3>
+    xA Coordinate: <input type="text" name="xC" value="<?php echo $xC;?>">
+    <p>xB coordinate: <input type="text" name="xD" value="<?php echo $xD;?>"></p>
+    <p>yA coordinate: <input type="text" name="yC" value="<?php echo $yC;?>"></p>
+    <p>yB coordinate: <input type="text" name="yD" value="<?php echo $yD;?>"></p>
     <input type="submit" name="submit" value="Submit"> 
     </form>
     <?php
@@ -78,6 +125,13 @@ function test_input($data) {
     $y2 = (int)$yB;
     $length = sqrt(($x2-$x1)*($x2-$x1) + ($y2-$y1)*($y2-$y1));
     echo $length;
+    echo "<h2>Length of the second line:</h2>";
+    $x3 = (int)$xC;
+    $x4 = (int)$xD;
+    $y3 = (int)$yC;
+    $y4 = (int)$yD;
+    $length2 = sqrt(($x4-$x3)*($x4-$x3) + ($y4-$y3)*($y4-$y3));
+    echo $length2;
     ?>
 </body>
 </html>
